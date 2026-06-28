@@ -42,7 +42,7 @@ export const Route = createFileRoute("/api/chat")({
         if (!key) return new Response("Missing ANTHROPIC_API_KEY", { status: 500 });
 
         const anthropic = createAnthropic({ apiKey: key });
-        const model = anthropic("claude-sonnet-4-6");
+        const model = anthropic("claude-sonnet-4-5-20250929");
 
         try {
           const { text } = await generateText({
