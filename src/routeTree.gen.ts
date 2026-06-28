@@ -17,7 +17,6 @@ import { Route as ChatRouteImport } from './routes/chat'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as EmailUnsubscribeRouteImport } from './routes/email/unsubscribe'
 import { Route as ApiSummarizeRouteImport } from './routes/api/summarize'
-import { Route as ApiDebugEnvRouteImport } from './routes/api/debug-env'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
 import { Route as LovableEmailSuppressionRouteImport } from './routes/lovable/email/suppression'
 import { Route as ApiPublicSubmitRequestRouteImport } from './routes/api/public/submit-request'
@@ -65,11 +64,6 @@ const ApiSummarizeRoute = ApiSummarizeRouteImport.update({
   path: '/api/summarize',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiDebugEnvRoute = ApiDebugEnvRouteImport.update({
-  id: '/api/debug-env',
-  path: '/api/debug-env',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ApiChatRoute = ApiChatRouteImport.update({
   id: '/api/chat',
   path: '/api/chat',
@@ -112,7 +106,6 @@ export interface FileRoutesByFullPath {
   '/summary': typeof SummaryRoute
   '/unsubscribe': typeof UnsubscribeRoute
   '/api/chat': typeof ApiChatRoute
-  '/api/debug-env': typeof ApiDebugEnvRoute
   '/api/summarize': typeof ApiSummarizeRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/api/public/submit-request': typeof ApiPublicSubmitRequestRoute
@@ -129,7 +122,6 @@ export interface FileRoutesByTo {
   '/summary': typeof SummaryRoute
   '/unsubscribe': typeof UnsubscribeRoute
   '/api/chat': typeof ApiChatRoute
-  '/api/debug-env': typeof ApiDebugEnvRoute
   '/api/summarize': typeof ApiSummarizeRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/api/public/submit-request': typeof ApiPublicSubmitRequestRoute
@@ -147,7 +139,6 @@ export interface FileRoutesById {
   '/summary': typeof SummaryRoute
   '/unsubscribe': typeof UnsubscribeRoute
   '/api/chat': typeof ApiChatRoute
-  '/api/debug-env': typeof ApiDebugEnvRoute
   '/api/summarize': typeof ApiSummarizeRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/api/public/submit-request': typeof ApiPublicSubmitRequestRoute
@@ -166,7 +157,6 @@ export interface FileRouteTypes {
     | '/summary'
     | '/unsubscribe'
     | '/api/chat'
-    | '/api/debug-env'
     | '/api/summarize'
     | '/email/unsubscribe'
     | '/api/public/submit-request'
@@ -183,7 +173,6 @@ export interface FileRouteTypes {
     | '/summary'
     | '/unsubscribe'
     | '/api/chat'
-    | '/api/debug-env'
     | '/api/summarize'
     | '/email/unsubscribe'
     | '/api/public/submit-request'
@@ -200,7 +189,6 @@ export interface FileRouteTypes {
     | '/summary'
     | '/unsubscribe'
     | '/api/chat'
-    | '/api/debug-env'
     | '/api/summarize'
     | '/email/unsubscribe'
     | '/api/public/submit-request'
@@ -218,7 +206,6 @@ export interface RootRouteChildren {
   SummaryRoute: typeof SummaryRoute
   UnsubscribeRoute: typeof UnsubscribeRoute
   ApiChatRoute: typeof ApiChatRoute
-  ApiDebugEnvRoute: typeof ApiDebugEnvRoute
   ApiSummarizeRoute: typeof ApiSummarizeRoute
   EmailUnsubscribeRoute: typeof EmailUnsubscribeRoute
   ApiPublicSubmitRequestRoute: typeof ApiPublicSubmitRequestRoute
@@ -286,13 +273,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiSummarizeRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/debug-env': {
-      id: '/api/debug-env'
-      path: '/api/debug-env'
-      fullPath: '/api/debug-env'
-      preLoaderRoute: typeof ApiDebugEnvRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/api/chat': {
       id: '/api/chat'
       path: '/api/chat'
@@ -346,7 +326,6 @@ const rootRouteChildren: RootRouteChildren = {
   SummaryRoute: SummaryRoute,
   UnsubscribeRoute: UnsubscribeRoute,
   ApiChatRoute: ApiChatRoute,
-  ApiDebugEnvRoute: ApiDebugEnvRoute,
   ApiSummarizeRoute: ApiSummarizeRoute,
   EmailUnsubscribeRoute: EmailUnsubscribeRoute,
   ApiPublicSubmitRequestRoute: ApiPublicSubmitRequestRoute,
