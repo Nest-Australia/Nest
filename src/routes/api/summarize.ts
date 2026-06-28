@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { createAnthropic } from "@ai-sdk/anthropic";
 import { generateText } from "ai";
 import { z } from "zod";
-import { createLovableAiGatewayProvider } from "@/lib/ai-gateway.server";
 
 
 const MessageSchema = z.object({
@@ -55,11 +55,11 @@ export const Route = createFileRoute("/api/summarize")({
         const parsed = BodySchema.safeParse(body);
         if (!parsed.success) return new Response("Invalid request", { status: 400 });
 
-        const key = process.env.LOVABLE_API_KEY;
-        if (!key) return new Response("Missing LOVABLE_API_KEY", { status: 500 });
+        const key = process.env.ANTHROPIC_API_KEY;
+        if (!key) return new Response("Missing ANTHROPIC_API_KEY", { status: 500 });
 
-        const gateway = createLovableAiGatewayProvider(key);
-        const model = gateway("google/gemini-3-flash-preview");
+        const anthropic = createAnthropic({ apiKey: key });
+        const model = anthropic("claude-sonnet-4-6");
 
         const transcript = parsed.data.messages
           .map((m) => `${m.role === "user" ? "Homeowner" : "Assistant"}: ${m.text}`)
